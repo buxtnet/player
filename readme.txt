@@ -1,1 +1,0 @@
-bun build jwplayer.js --target bun --outdir dist --minify
