@@ -4297,37 +4297,33 @@
                     return c
                 }
             });
-
-            var r = n(6834),
-                i = n(8428),
-                o = function(fileName) {
-                    for (var scripts = document.getElementsByTagName("script"), n = 0; n < scripts.length; n++) {
-                        var src = scripts[n].src;
-                        if (src) {
-                            var idx = src.lastIndexOf("/" + fileName);
-                            if (idx >= 0)
-                                return src.substr(0, idx + 1)
-                        }
+            var r = n(6834)
+              , i = n(8428)
+              , o = function(t) {
+                for (var e = document.getElementsByTagName("script"), n = 0; n < e.length; n++) {
+                    var r = e[n].src;
+                    if (r) {
+                        var i = r.lastIndexOf("/" + t);
+                        if (i >= 0)
+                            return r.substr(0, i + 1)
                     }
-                    return ""
-                },
-                u = function() {
-                    return o("jwplayerv3.js")
-                },
-
-                // Kiểm tra version
-                a = function(version) {
-                    var e = ("0" + version).split(/\W/),
-                        n = r.i.split(/\W/),
-                        i1 = parseFloat(e[0]),
-                        o1 = parseFloat(n[0]);
-                    return !(i1 > o1 || i1 === o1 && parseFloat("0" + e[1]) > parseFloat(n[1]))
-                },
-
-                // loadFrom() cũng trả base URL
-                c = function() {
-                    return u()
                 }
+                return ""
+            }
+                , u = function() {
+                var t = "//cdn.jsdelivr.net/gh/buxtnet/player@1.0.0/";
+                return "" + (Object(i.isFileProtocol)() ? "https:" : "") + t
+            }
+              , a = function(t) {
+                var e = ("0" + t).split(/\W/)
+                  , n = r.i.split(/\W/)
+                  , i = parseFloat(e[0])
+                  , o = parseFloat(n[0]);
+                return !(i > o || i === o && parseFloat("0" + e[1]) > parseFloat(n[1]))
+            }
+              , c = function() {
+                return u()
+            }
         },
         1876: function(t, e, n) {
             "use strict";
@@ -5900,24 +5896,18 @@
             function g(t) {
                 return "https:" + t
             }
-            function getBaseUrl() {
-                const script = document.currentScript
-                if (!script) return ""
-                return script.src.replace(/\/[^\/]+$/, "/")
-            }
             function m(t) {
-                const baseUrl = getBaseUrl()
-                const files = {
-                    bidding: "bidding.js",
-                    jwpsrv: "jwpsrv.js",
-                    dai: "dai.js",
-                    vast: "vast.js",
-                    googima: "googima.js",
-                    freewheel: "freewheel.js",
-                    gapro: "gapro.js"
-                }
-                const file = files[t]
-                return file ? baseUrl + file : ""
+                var e = "file:" === window.location.protocol ? "https:" : ""
+                  , n = {
+                    bidding: "//cdn.jsdelivr.net/gh/buxtnet/player@1.0.0/bidding.js",
+                    jwpsrv: "//cdn.jsdelivr.net/gh/buxtnet/player@1.0.0/jwpsrv.js",
+                    dai: "//cdn.jsdelivr.net/gh/buxtnet/player@1.0.0/dai.js",
+                    vast:  "//cdn.jsdelivr.net/gh/buxtnet/player@1.0.0/vast.js",
+                    googima: "//cdn.jsdelivr.net/gh/buxtnet/player@1.0.0/googima.js",
+                    freewheel: "//cdn.jsdelivr.net/gh/buxtnet/player@1.0.0/freewheel.js",
+                    gapro: "//cdn.jsdelivr.net/gh/buxtnet/player@1.0.0/gapro.js"
+                }[t];
+                return n ? e + n : ""
             }
             function y(t, e, n) {
                 e && (t[e.client || m(n)] = e,
